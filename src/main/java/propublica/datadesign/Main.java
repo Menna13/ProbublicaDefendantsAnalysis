@@ -1,5 +1,8 @@
 package propublica.datadesign;
+import java.io.FileReader;
+import java.util.ArrayList;
 
+import com.opencsv.*;
 /* Name: Menna Khaliel
  * File: Main.java
  * 
@@ -20,6 +23,11 @@ public class Main
 		DefendentsFactors("Male", "African-American","M", 
 				"Driving License Suspended", "13", "Medium", "false", "Battery", "(M2)", "Male-African-American"));
 
+		CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader("yourfile.csv"));
+		ArrayList<String[]> myEntries = new ArrayList<String[]>(reader.readAll());
+		reader.close();
 
 	}
+	
+	
 }

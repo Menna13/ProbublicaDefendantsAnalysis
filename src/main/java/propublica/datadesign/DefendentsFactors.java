@@ -39,12 +39,12 @@ public class DefendentsFactors {
 
 
 	//setting the constructor
-	public DefendentsFactors (String Sex, String Race,CChargeDegree cchargeDegree, 
+	public DefendentsFactors (Sex Sex, Race Race,CChargeDegree cchargeDegree, 
 			String rchargeDesc, int decileScore, ScoreText scoreText, 
 			int twoyearrecid, String cchargeDesc, String rchargeDegree, String sexRace) {
 
-		this.sex = sex;
-		this.race = race;
+		this.sex = Sex;
+		this.race = Race;
 		this.cchargeDegree = cchargeDegree;
 		this.rchargeDesc = rchargeDesc;
 		this.decileScore = decileScore;
@@ -60,7 +60,7 @@ public class DefendentsFactors {
 
 	public Sex getSex() {
 		return sex;
-	}
+	}CSVReaderHeaderAware
 
 
 
@@ -120,7 +120,7 @@ public class DefendentsFactors {
 
 	public ScoreText getScoreText() {
 		return scoreText;
-	}
+	}current
 
 
 
@@ -141,7 +141,7 @@ public class DefendentsFactors {
 	}
 
 
-
+	current
 	public String getCchargeDesc() {
 		return cchargeDesc;
 	}
