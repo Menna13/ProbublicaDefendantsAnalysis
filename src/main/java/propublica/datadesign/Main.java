@@ -70,11 +70,11 @@ public class Main
 				"13", "Medium", "0", "Battery", "(M2)", "Male-African-American");
 				
 		
-		 FullData full = new FullData(myEntries);
-		 System.out.println(full.AnalysisAfAmBiasedHIGHRisk());
-		 System.out.println(full.AnalysisAfAmBiasedLOWRisk());
-		 System.out.println(full.AnalysisCaucasianBiasedHIGHRisk());
-		 System.out.println(full.AnalysisCaucasianBiasedLOWRisk());
+		 FullData full = new FullData(myEntries); //takes the data from CSV file and import it to my FullData class
+		 System.out.println("Percentage of African-American Defendants who Labeled as High Risk but didn't re-offend: " + full.AnalysisAfAmBiasedHIGHRisk());
+		 System.out.println("Percentage of African-American Defendants who Labeled as Low Risk but did re-offend: " + full.AnalysisAfAmBiasedLOWRisk());
+		 System.out.println("Percentage of White Americans Defendants who Labeled as High Risk but didn't re-offend: " + full.AnalysisCaucasianBiasedHIGHRisk());
+		 System.out.println("Percentage of White Americans Defendants who Labeled as Low Risk but did re-offend: " + full.AnalysisCaucasianBiasedLOWRisk());
 		 
 		
 	}
