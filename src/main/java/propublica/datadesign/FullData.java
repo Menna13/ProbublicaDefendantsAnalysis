@@ -27,15 +27,15 @@ public class FullData {
 	/*return an ArrayList that holds Arrays of type DefendentsFactors
 	 * that each hold a row from the full data in the CSV file
 	 * @param entry : The array inside the ArrayList of full data
-	 * @param current : 
-	 * 
+	 * @param current : stores  an array of type DefendentFactors that have the row filled 
+	 * returns the ArrayList 
 	 */
 
 	public FullData (ArrayList<String[]> myEntries) {  
 		Data = new ArrayList<DefendentsFactors>();
 		for(int i = 0; i < myEntries.size(); i++) {
 			String[] entry = myEntries.get(i);
-//			System.out.println(Arrays.toString(entry));
+
 			if (entry[6].equals("0")){
 				DefendentsFactors current;
 				try {
@@ -44,7 +44,7 @@ public class FullData {
 					this.Data.add(current);
 				}
 				catch(IllegalArgumentException e){
-					//System.out.println(e.getMessage());
+
 				}
 							
 			} else {
