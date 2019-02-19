@@ -1,5 +1,4 @@
-
-/* Name: Menna Khaliel
+/* Name: Menna Khaliel 
  * File: DefendentsFactors.java
  * 
  * The main class for Lab 1 
@@ -16,11 +15,10 @@ package propublica.datadesign;
 
 public class DefendentsFactors {
 
-	enum Sex {MALE , FEMALE};
-	enum Race {AFRICANAMERICAN, OTHER, HISPANIC, CAUCASIAN};
-	enum ScoreText {LOW, HIGH, MEDIUM};
-	enum CChargeDegree {F, M}; 
-
+	public enum Sex {MALE , FEMALE};
+	public enum Race {AFRICANAMERICAN, OTHER, HISPANIC, CAUCASIAN, NATIVEAMERICAN, ASIAN};
+	public enum ScoreText {LOW, HIGH, MEDIUM};
+	public enum CChargeDegree {F, M}; 
 	//THINGS LIKE MALE SHOULD BE IN CAPS (ENUM PARAMETERS)
 
 
@@ -39,12 +37,12 @@ public class DefendentsFactors {
 
 
 	//setting the constructor
-	public DefendentsFactors (Sex Sex, Race Race,CChargeDegree cchargeDegree, 
-			String rchargeDesc, int decileScore, ScoreText scoreText, 
-			int twoyearrecid, String cchargeDesc, String rchargeDegree, String sexRace) {
+	public DefendentsFactors (Sex sex, Race race,CChargeDegree cchargeDegree, 
+			 String cchargeDesc, int decileScore, ScoreText scoreText, 
+			int twoyearrecid , String rchargeDesc, String rchargeDegree, String sexRace) {
 
-		this.sex = Sex;
-		this.race = Race;
+		this.sex = sex;
+		this.race = race;
 		this.cchargeDegree = cchargeDegree;
 		this.rchargeDesc = rchargeDesc;
 		this.decileScore = decileScore;
@@ -60,7 +58,7 @@ public class DefendentsFactors {
 
 	public Sex getSex() {
 		return sex;
-	}CSVReaderHeaderAware
+	}
 
 
 
@@ -120,8 +118,7 @@ public class DefendentsFactors {
 
 	public ScoreText getScoreText() {
 		return scoreText;
-	}current
-
+	}
 
 
 	public void setScoreText(ScoreText scoreText) {
@@ -141,7 +138,7 @@ public class DefendentsFactors {
 	}
 
 
-	current
+
 	public String getCchargeDesc() {
 		return cchargeDesc;
 	}
@@ -183,10 +180,10 @@ public class DefendentsFactors {
 	 *@param1 scoreText is the the score
 	 *@param2 twoyearrecid is an input of 1 or 0 which means that there 
 	 *was a recid in case of 1 and not in case of 0
-	 *return boolean true or false based on the analysis 
+	 *return boolean true or false basDefendentsFactorsed on the analysis 
 	 */
 
-	private boolean ScoreAnalysisBiasedToHigh () {
+	public boolean ScoreAnalysisBiasedToHigh () {
 
 		if (this.scoreText == ScoreText.HIGH && this.twoyearrecid == 0) {
 			return true;
@@ -208,7 +205,7 @@ public class DefendentsFactors {
 	 *return boolean true or false based on the analysis 
 	 */
 
-	private boolean ScoreAnalysisBiasedToLow () {
+	public boolean ScoreAnalysisBiasedToLow () {
 
 		if (this.scoreText == ScoreText.LOW && this.twoyearrecid == 1) { 
 			return true;
@@ -219,18 +216,23 @@ public class DefendentsFactors {
 	}
 
 	//setting a constructor that takes only string inputs
-	public DefendentsFactors (String Sex, String Race, String CChargeDegree, 
-			String rchargeDesc, String decileScore, String ScoreText, 
-			String twoyearrecid, String cchargeDesc, String rchargeDegree, String sexRace) {
+	public DefendentsFactors (String sex, String race, String cchargeDegree, 
+		String cchargeDesc, String decileScore, String scoreText, 
+			String twoyearrecid, String rchargeDesc, String rchargeDegree, String sexRace) {
 
 
 		this.decileScore = Integer.parseInt(decileScore);
 		this.twoyearrecid = Integer.parseInt(twoyearrecid);
-		this.sex = sex;
-		this.race = race;
-		this.cchargeDegree = cchargeDegree;
-		this.scoreText = scoreText;
-	}
+		this.rchargeDesc = rchargeDesc;
+		this.cchargeDesc = cchargeDesc;
+		this.rchargeDegree = rchargeDegree;
+		this.sexRace = sexRace;
+		CheckSex (sex);
+		Checkrace(race);
+		CheckCChargeDegree(cchargeDegree);
+		CheckScoreText(scoreText);
+		}
+
 
 	/*
 	 * return the decile score as a String and throws
@@ -252,6 +254,7 @@ public class DefendentsFactors {
 		}	else { 
 			//throws an exception if it's not
 			throw new IllegalArgumentException("Invalid Input"); 
+			
 		}
 	}
 
@@ -278,7 +281,7 @@ public class DefendentsFactors {
 			this.twoyearrecid = Integer.parseInt(twoyearrecid);
 		}else {
 			//throws an exception if it's not
-			throw new IllegalArgumentException("Invalid Input"); 
+			throw new IllegalArgumentException("Invalid Input: Should be 0 or 1"); 
 		}
 	}
 
@@ -291,15 +294,15 @@ public class DefendentsFactors {
 	 */
 
 	private void CheckSex (String sex) {
-		if (sex == "Male") {
+		if (sex.equals("Male")) {
 			//calls for the matching input from enum Sex
 			this.sex = Sex.MALE; 
-		}else if (sex == "Female") {
+		}else if (sex.equals("Female")) {
 			//calls for the matching input from enum Sex
 			this.sex = Sex.FEMALE;
 		}else {
 			//throws an exception if it's not valid
-			throw new IllegalArgumentException("Invalid Input");  
+			throw new IllegalArgumentException("Invalid Sex Input");  
 		}
 	}
 
@@ -312,19 +315,23 @@ public class DefendentsFactors {
 	 */
 
 	private void Checkrace(String race){
-		if (race == "African-American") {
+		if (race.equals("African-American")) {
 			//calls for the matching input from enum Race
 			this.race = Race.AFRICANAMERICAN;
-		} else if (race == "Hispanic") {
+		} else if (race.equals("Hispanic")) {
 			this.race = Race.HISPANIC;
-		} else if (race == "Caucasian") {
+		} else if (race.equals("Caucasian")) {
 			this.race = Race.CAUCASIAN;
-		} else if (race == "Other") {
+		} else if (race.equals("Other")) {
 			this.race = Race.OTHER;		
-		}
+		} else if (race.equals("Asian")) {
+			this.race = Race.ASIAN;
+		}else if (race.equals("Native American")) {
+			this.race= Race.NATIVEAMERICAN;
+		}	
 		else {
 			//throws an exception if it's not valid
-			throw new IllegalArgumentException("Invalid Input");
+			throw new IllegalArgumentException("Race is not valid: " + race);
 		}
 	}
 
@@ -336,14 +343,14 @@ public class DefendentsFactors {
 	 */
 
 	private void CheckCChargeDegree (String cchargeDegree) {
-		if (cchargeDegree == "M") {
+		if (cchargeDegree.equals("M")) {
 			//calls for the matching input from enum CheckCChargeDegree
 			this.cchargeDegree = CChargeDegree.M;
-		}else if (cchargeDegree == "F") {
+		}else if (cchargeDegree.equals("F")) {
 			this.cchargeDegree = CChargeDegree.F;
 		}else {
 			//throws an exception if it's not valid
-			throw new IllegalArgumentException("Invalid Input");
+			throw new IllegalArgumentException("ChargeDegree Should be F, or M");
 		}
 	}
 
@@ -358,16 +365,16 @@ public class DefendentsFactors {
 	 */
 
 	private void CheckScoreText (String scoreText) {
-		if (scoreText == "Low") {
+		if (scoreText.equals("Low")) {
 			//calls for the matching input from enum ScoreText
 			this.scoreText = ScoreText.LOW;
-		}else if (scoreText == "Medium") {
+		}else if (scoreText.equals("Medium")) {
 			this.scoreText = ScoreText.MEDIUM;
-		}else if (scoreText == "High") {
+		}else if (scoreText.equals("High")) {
 			this.scoreText = ScoreText.HIGH;
 		}else {
 			//throws an exception if it's not valid
-			throw new IllegalArgumentException("Invalid Input");
+			throw new IllegalArgumentException("ScoreText Should be Mid, High, or Low");
 		}
 	}
 }
